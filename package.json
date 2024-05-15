@@ -1,0 +1,50 @@
+{
+    "name": "restaurante-34",
+    "version": "0.1.0",
+    "private": true,
+    "engines": {
+        "node": "18.16.0"
+    },
+    "prisma": {
+        "seed": "ts-node prisma/seed.ts"
+    },
+    "scripts": {
+        "start": "tsc && npx prisma generate && ts-node -r tsconfig-paths/register public/src/server.js",
+        "_start": "npx prisma generate && tsc && ts-node -r tsconfig-paths/register public/src/server.js",
+        "dev": "tsx watch src/server.ts",
+        "build": "npx prisma generate && tsc",
+        "prisma-setup": "npx prisma migrate dev --name init && npx prisma db seed"
+    },
+    "dependencies": {
+        "@prisma/client": "^5.6.0",
+        "@types/json-schema": "^7.0.13",
+        "@typescript-eslint/eslint-plugin": "^5.59.9",
+        "@typescript-eslint/parser": "^5.59.9",
+        "body-parser": "^1.20.2",
+        "cors": "^2.8.5",
+        "date-fns": "^3.1.0",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "json-schema": "^0.4.0",
+        "swagger-ui-express": "^5.0.0",
+        "tsconfig-paths": "^4.2.0"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^17.6.5",
+        "@commitlint/config-conventional": "^17.6.5",
+        "@types/cors": "^2.8.13",
+        "@types/express": "^4.17.19",
+        "@types/node": "^20.8.7",
+        "@types/swagger-ui-express": "^4.1.6",
+        "eslint": "^8.40.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "husky": "^8.0.3",
+        "lint-staged": "^13.2.2",
+        "prettier": "^2.8.8",
+        "prisma": "^5.6.0",
+        "ts-node": "^10.9.1",
+        "tsx": "^3.12.7",
+        "typescript": "^5.2.2"
+    }
+}
