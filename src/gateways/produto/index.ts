@@ -1,4 +1,4 @@
-import { Produto } from "@/entities/produto";
+import { Produto } from "@/entities/Produto";
 import { IProdutoGateway } from "@/interfaces/gateway/IProdutoGateway";
 import { IProdutoRepository } from "@/interfaces/repositories/IProdutoRepository";
 
@@ -43,18 +43,11 @@ export class ProdutoGateway implements IProdutoGateway {
         }
     }
 
-    async getProdutosCategoriaGateway(
-        categoriaProdutoId: number
-    ): Promise<Produto[]> {
-        try {
-            const getCategoria = await this.produtoRepository.get(
-                categoriaProdutoId
-            );
-            return getCategoria;
-        } catch (error) {
-            throw new Error(
-                `Erro ao obter produtos da categoria ${categoriaProdutoId}`
-            );
-        }
+    async getProdutosCategoriaGateway(categoriaProdutoId: number): Promise<Produto[]> {
+        return await this.produtoRepository.get(categoriaProdutoId);        
+    }
+
+    async getProdutoPorId(id:number): Promise<Produto> {
+        return await this.produtoRepository.getProdutoPorId(id);
     }
 }

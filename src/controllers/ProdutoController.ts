@@ -1,12 +1,12 @@
-import { Response, Request } from "express";
 import { ProdutoPresenter } from "@/presenters/produto";
-import { Produto } from "@prisma/client";
-import { ProdutoUseCase } from "@/usecases/produto/ProdutoUseCase";
+import { Request, Response } from "express";
+import { Produto } from "@/entities/Produto";
 import ProdutoRepository from "@/external/repositories/ProdutoRepository";
 import { ProdutoGateway } from "@/gateways/produto";
 import { IProdutoController } from "@/interfaces/controllers/IProdutoController";
 import { IProdutoGateway } from "@/interfaces/gateway/IProdutoGateway";
 import { IProdutoUseCase } from "@/interfaces/usecases/IProdutoUseCase";
+import { ProdutoUseCase } from "@/usecases/produto/ProdutoUseCase";
 
 export default class ProdutoController implements IProdutoController {
     private produtoUseCase: IProdutoUseCase;
@@ -21,12 +21,8 @@ export default class ProdutoController implements IProdutoController {
     async getProdutosCategoria(req: Request, res: Response) {
         const { categoriaProdutoId } = req.params;
         try {
-            const getProduto: Produto[] =
-                await this.produtoUseCase.executeGetProdutoCategoria(
-                    parseInt(categoriaProdutoId, 10)
-                );
-            const responseProduto =
-                this.produtoPresenter.getProdutosPresenter(getProduto);
+            const getProduto: Produto[] = await this.produtoUseCase.executeGetProdutoCategoria(parseInt(categoriaProdutoId, 10));
+            const responseProduto = this.produtoPresenter.getProdutosPresenter(getProduto);
 
             return res.status(200).json(responseProduto);
         } catch (error: any) {
@@ -100,6 +96,22 @@ export default class ProdutoController implements IProdutoController {
                     true
                 );
             return res.status(200).json(responseProduto);
+        } catch (error: any) {
+            const responseProduto =
+                this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                    error?.message,
+                    false
+                );
+            return res.status(400).json(responseProduto);
+        }
+    }
+
+    async getProdutoPorId(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const produtoBuscado = await this.produtoUseCase.executeGetProdutoPorId(parseInt(id, 10));
+
+            return res.status(200).json(produtoBuscado);
         } catch (error: any) {
             const responseProduto =
                 this.produtoPresenter.presenterMensagemParaRespostaHttp(
