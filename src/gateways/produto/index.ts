@@ -1,4 +1,4 @@
-import { Produto } from "@/entities/Produto";
+import { Produto } from "../../entities/produto";
 import { IProdutoGateway } from "@/interfaces/gateway/IProdutoGateway";
 import { IProdutoRepository } from "@/interfaces/repositories/IProdutoRepository";
 

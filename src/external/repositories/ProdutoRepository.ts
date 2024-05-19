@@ -1,5 +1,5 @@
 import { NovoProduto } from '@/entities/NovoProduto';
-import { Produto } from '@/entities/Produto';
+import { Produto } from '../../entities/produto';
 import { IProdutoRepository } from '@/interfaces/repositories/IProdutoRepository';
 import { PrismaClient } from '@prisma/client';
 
@@ -45,7 +45,7 @@ class ProdutoRepository implements IProdutoRepository {
         }
     }
 
-    async update(produto: NovoProduto): Promise<Produto> {
+    async update(produto: Produto): Promise<Produto> {
         try {
             const putResponse = await this.prismaClient.produto.update({
                 where: { id: produto.id },

@@ -23,7 +23,7 @@ model Produto{
   categoriaProdutoId Int
   categoriaProduto CategoriaProduto @relation(fields: [categoriaProdutoId], references: [id])
   descricao  String
-  preco Decimal
+  preco Int
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }

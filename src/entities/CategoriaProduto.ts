@@ -1,4 +1,4 @@
-import { Produto } from "./Produto";
+import { Produto } from "./produto";
 
 interface CategoriaProduto {
     id: number;

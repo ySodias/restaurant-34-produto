@@ -1,5 +1,6 @@
-import { Produto } from "./Produto";
+
 import Cardapio from "./Cardapio";
+import { Produto } from "./produto";
 
 
 interface ProdutosDoCardapio {

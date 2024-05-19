@@ -1,6 +1,6 @@
 import { IProdutoUseCase } from "@/interfaces/usecases/IProdutoUseCase";
 import { IProdutoGateway } from "@/interfaces/gateway/IProdutoGateway";
-import { Produto } from "@/entities/Produto";
+import { Produto } from "../../entities/produto";
 
 export class ProdutoUseCase implements IProdutoUseCase {
     private produtoGateway: IProdutoGateway;

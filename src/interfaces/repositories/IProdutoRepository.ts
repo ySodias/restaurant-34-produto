@@ -1,5 +1,5 @@
 import { NovoProduto } from '@/entities/NovoProduto';
-import { Produto } from '@/entities/Produto';
+import { Produto } from '../../entities/produto';
 
 export interface IProdutoRepository {
     create(novoProduto: NovoProduto): Promise<Produto>;
