@@ -1,6 +1,5 @@
-
-import CategoriaProduto from "./CategoriaProduto";
-import ProdutosDoCardapio from "./ProdutosDoCardapio";
+import CategoriaProduto from './CategoriaProduto';
+import ProdutosDoCardapio from './ProdutosDoCardapio';
 interface Produto {
     id: number;
     produtosDoCardapio: ProdutosDoCardapio[];
@@ -21,8 +20,8 @@ class ProdutoImpl implements Produto {
         public produtosDoCardapio: ProdutosDoCardapio[],
         public categoriaProduto: CategoriaProduto,
         public createdAt: Date,
-        public updatedAt: Date
-    ) { }
+        public updatedAt: Date,
+    ) {}
 }
 
 export { Produto, ProdutoImpl };

@@ -1,7 +1,7 @@
-
-import { Produto } from "@/entities/Produto";
-import { IProdutoRepository } from "@/interfaces/repositories/IProdutoRepository";
-import { PrismaClient } from "@prisma/client";
+import { NovoProduto } from '@/entities/NovoProduto';
+import { Produto } from '@/entities/Produto';
+import { IProdutoRepository } from '@/interfaces/repositories/IProdutoRepository';
+import { PrismaClient } from '@prisma/client';
 
 class ProdutoRepository implements IProdutoRepository {
     private prismaClient: PrismaClient;
@@ -22,12 +22,11 @@ class ProdutoRepository implements IProdutoRepository {
             const produtosConvertidos = produtoUnknown as Produto[];
 
             return produtosConvertidos;
-
         } catch (error) {
             throw error;
         }
     }
-    async create(produto: Produto): Promise<Produto> {
+    async create(produto: NovoProduto): Promise<Produto> {
         try {
             const creationResponse = await this.prismaClient.produto.create({
                 data: {
@@ -41,13 +40,12 @@ class ProdutoRepository implements IProdutoRepository {
             const produtoConvertido = produtoUnknown as Produto;
 
             return produtoConvertido;
-
         } catch (error) {
             throw error;
         }
     }
 
-    async update(produto: Produto): Promise<Produto> {
+    async update(produto: NovoProduto): Promise<Produto> {
         try {
             const putResponse = await this.prismaClient.produto.update({
                 where: { id: produto.id },
@@ -104,7 +102,6 @@ class ProdutoRepository implements IProdutoRepository {
             const produtoConvertido = produtoUnknown as Produto;
 
             return produtoConvertido;
-
         } catch (error) {
             throw error;
         }
