@@ -1,30 +1,30 @@
 import { expect } from 'chai';
 import { Given, Then, When, AfterAll} from '@cucumber/cucumber';
-import request from 'supertest';
-import * as http from 'http'; 
 import server from '../../../../dist/server.js';
 
+
 let response;
-let pagamentoRequest;
+let produtoRequest;
 
-Given('Eu tenho um pagamento pedido de criação válido', function () {
-    pagamentoRequest = {
-        idPedido: 2,
-        valor: 10.0,
-        tipoPagamento: 'CARTAO_DEBITO',
-    };
+Given('Eu tenho um produto válido', function () {
+    produtoRequest = {
+      id: 1,
+      categoriaProdutoId: 3,
+      descricao: 'Fanta Laranja',
+      preco: 12.0,
+      produtosDoCardapio: [{}],
+      categoriaProduto: {},
+      createdAt: new Date(),
+      updatedAt: new Date()
+  };
 });
 
-When('Eu submento os dados para criar o pagamento', async function () {
+When('Eu submeto os dados para criar o produto', async function () {
 
-    response = await server.default.post('/api/pagamentos').send({
-      idPedido: 2,
-      valor: 10.0,
-      tipoPagamento: 'CARTAO_DEBITO',
-  })
+    response = await server.default.post('/api/produto').send(produtoRequest)
 
 });
 
-Then('o pagamento deve ser criado com sucesso', function () {
-    expect(response.status).to.equal(201);
+Then('o produto deve ser criado com sucesso', function () {
+    expect(response.status).to.equal(200);
 });

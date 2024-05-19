@@ -1,9 +1,9 @@
-Feature: Criando pagamento
+Feature: Criando produto
 
   Scenario: Criação de pagamento bem sucedido
-    Given Eu tenho um pagamento pedido de criação válido
-    When Eu submento os dados para criar o pagamento
-    Then o pagamento deve ser criado com sucesso
+    Given Eu tenho um produto válido
+    When Eu submeto os dados para criar o produto
+    Then o produto deve ser criado com sucesso
 
 #   Scenario: Failed payment due to insufficient funds
 #     Given I have a payment request with insufficient funds

@@ -9,7 +9,7 @@ import { routes } from "./api";
 import { prisma } from "./external/database";
 import request from 'supertest';
 
-process.env.DATABASE_URL="postgresql://root:root@localhost:5432/postgres?schema=public"
+process.env.DATABASE_URL="postgresql://root:root@localhost:5432/produtos?schema=public"
 
 const app = express();
 

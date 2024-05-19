@@ -9,8 +9,8 @@
         "seed": "ts-node prisma/seed.ts"
     },
     "scripts": {
-        "start": "tsc && npx prisma generate && ts-node -r tsconfig-paths/register public/src/server.js",
-        "_start": "npx prisma generate && tsc && ts-node -r tsconfig-paths/register public/src/server.js",
+        "start": "tsc && npx prisma generate && ts-node -r tsconfig-paths/register dist/server.js",
+        "_start": "npx prisma generate && tsc && ts-node -r tsconfig-paths/register dist/server.js",
         "dev": "tsx watch src/server.ts",
         "build": "npx prisma generate && tsc",
         "prisma-setup": "npx prisma migrate dev --name init && npx prisma db seed",
