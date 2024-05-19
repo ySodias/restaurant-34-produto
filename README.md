@@ -1,5 +1,6 @@
 
 # Tech Challenge SOAT4 - Grupo 34
+## Produto Microservice
 
 Este é o repositório de Trabalho de Tech Challenge da Pós Graduação em Software Architeture (SOAT4), que descreve o desenvolvimento de uma API Backend para registro de pedidos em um restaurante fictício chamado Restaurante-34. Este projeto inclui uma aplicação backend Node.js e um banco de dados PostgreSQL, gerenciados com Docker Compose e segue os padrões da Arquitetura Hexagonal.
 
@@ -15,8 +16,8 @@ Antes de iniciar, certifique-se de ter os seguintes pré-requisitos instalados e
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/pandaluk/restaurante-34
-   cd restaurante-34-tcc
+   git clone 
+   cd restaurant-34-produto
    ```
 
 2. Configure as variáveis de ambiente necessárias. Copie o arquivo `.env.example` para `.env` e ajuste as variáveis de acordo com suas configurações.
