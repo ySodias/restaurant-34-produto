@@ -1,12 +1,12 @@
-import { ProdutoPresenter } from '@/presenters/produto';
+import { ProdutoPresenter } from '../presenters/produto';
 import { Request, Response } from 'express';
-import { Produto } from '../../entities/produto';
-import ProdutoRepository from '@/external/repositories/ProdutoRepository';
-import { ProdutoGateway } from '@/gateways/produto';
-import { IProdutoController } from '@/interfaces/controllers/IProdutoController';
-import { IProdutoGateway } from '@/interfaces/gateway/IProdutoGateway';
-import { IProdutoUseCase } from '@/interfaces/usecases/IProdutoUseCase';
-import { ProdutoUseCase } from '@/usecases/produto/ProdutoUseCase';
+import { Produto } from '../entities/produto';
+import ProdutoRepository from '../external/repositories/ProdutoRepository';
+import { ProdutoGateway } from '../gateways/produto';
+import { IProdutoController } from '../interfaces/controllers/IProdutoController';
+import { IProdutoGateway } from '../interfaces/gateway/IProdutoGateway';
+import { IProdutoUseCase } from '../interfaces/usecases/IProdutoUseCase';
+import { ProdutoUseCase } from '../usecases/produto/ProdutoUseCase';
 
 export default class ProdutoController implements IProdutoController {
     private produtoUseCase: IProdutoUseCase;

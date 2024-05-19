@@ -14,6 +14,6 @@
             "@/*": ["src/*"]
         }
     },
-    "include": ["src/**/*.ts", "tests/**/*.ts"],
+    "include": ["src/**/*.ts", "tests/**/*.ts","src/tests/features/support/world.mjs", "src/tests/features/step_definitions/PagamentoSteps.mjs"],
     "exclude": ["node_modules"]
 }
