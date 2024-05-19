@@ -11,6 +11,6 @@ module.exports = {
   coveragePathIgnorePatterns: ['<rootDir>/src/tests/*', '<rootDir>/src/external/http/*'],
   collectCoverageFrom: [
     "**/*.ts",
-    "!**/node_modules/**", "!**src/controllers/**","!**/prisma/**"
+    "!**/node_modules/**", "!**src/controllers/**","!**/prisma/**", "!**src/server.ts", "!**src/api/**", '!**/external/database/**', '!**/entities/**'
 ]
 };
