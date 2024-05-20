@@ -3,4 +3,5 @@ export interface IProdutoController {
     updateProduto(req: any, res: any): any;
     deleteProduto(req: any, res: any): any;
     getProdutosCategoria(req: any, res: any): any;
+    getProdutoPorId(req: any, res: any): any;
 }

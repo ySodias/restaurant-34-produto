@@ -6,25 +6,23 @@ import cors from "cors";
 import * as swaggerDocument from "./swagger.json";
 import swaggerUi from "swagger-ui-express";
 import { routes } from "./api";
-import { prisma } from "@/external/database";
+import { prisma } from "./external/database";
+import request from 'supertest';
 
-try {
+const app = express();
 
-    const app = express();
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.use(express.json());
+app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use(cors());
 
-    app.use(bodyParser.json({ limit: "50mb" }));
-    app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-    app.use(express.json());
-    app.use("/swagger", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-    app.use(cors());
+new routes(app, prisma);
 
-    new routes(app, prisma);
+const server = http.createServer(app);
 
-    const server = http.createServer(app);
+server.listen(process.env.PORT || 3000, () => {
+    console.log(`RUNNING ON PORT ${process.env.PORT || 3000}`);
+});
 
-    server.listen(process.env.PORT || 3001, () => {
-        console.log(`RUNNING ON PORT ${process.env.PORT || 3001}`);
-    });
-} catch (err) {
-    console.log(err);
-}
+export default request(app);

@@ -1,6 +1,6 @@
 import { IProdutoUseCase } from "@/interfaces/usecases/IProdutoUseCase";
 import { IProdutoGateway } from "@/interfaces/gateway/IProdutoGateway";
-import { Produto } from "@prisma/client";
+import { Produto } from "../../entities/produto";
 
 export class ProdutoUseCase implements IProdutoUseCase {
     private produtoGateway: IProdutoGateway;
@@ -9,20 +9,14 @@ export class ProdutoUseCase implements IProdutoUseCase {
         this.produtoGateway = produtoGateway;
     }
 
-    async executeGetProdutoCategoria(
-        categoriaProdutoId: number
-    ): Promise<Produto[]> {
+    async executeGetProdutoCategoria(categoriaProdutoId: number): Promise<Produto[]> {
         try {
-            const getCategoria =
-                await this.produtoGateway.getProdutosCategoriaGateway(
-                    categoriaProdutoId
-                );
-
-            return getCategoria;
+            return await this.produtoGateway.getProdutosCategoriaGateway(categoriaProdutoId);
         } catch (error) {
             throw error;
         }
     }
+
     async executeCreation(produtoData: Produto): Promise<Produto> {
         try {
             const novoCliente = await this.produtoGateway.createProdutoGateway(
@@ -34,6 +28,7 @@ export class ProdutoUseCase implements IProdutoUseCase {
             throw error;
         }
     }
+
     async executeUpdate(produtoData: Produto): Promise<Produto> {
         try {
             const novoCliente = await this.produtoGateway.updateProdutoGateway(
@@ -45,6 +40,7 @@ export class ProdutoUseCase implements IProdutoUseCase {
             throw error;
         }
     }
+
     async executeDelete(id: number): Promise<Produto> {
         try {
             const novoCliente = await this.produtoGateway.deleteProdutoGateway(
@@ -52,6 +48,14 @@ export class ProdutoUseCase implements IProdutoUseCase {
             );
 
             return novoCliente;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async executeGetProdutoPorId(id:number): Promise<Produto> {
+        try {
+            return await this.produtoGateway.getProdutoPorId(id);
         } catch (error) {
             throw error;
         }

@@ -40,6 +40,10 @@ class ProdutoRoutes implements IBuildRoutes {
 
             this.produtoController.deleteProduto.bind(this.produtoController)
         );
+        this.express.get(
+            `${this.BASE_URL}/produto/:id`,
+            this.produtoController.getProdutoPorId.bind(this.produtoController)
+        );
     }
 }
 

@@ -1,8 +1,8 @@
 import { Application } from "express";
 import ProdutoRoutes from "./produto";
-import ProdutoController from "@/controllers/ProdutoController";
+import ProdutoController from "../controllers/ProdutoController";
 import { PrismaClient } from "@prisma/client";
-import ProdutoRepository from "@/external/repositories/ProdutoRepository";
+import ProdutoRepository from "../external/repositories/ProdutoRepository";
 
 const BASE_URL = "/api";
 

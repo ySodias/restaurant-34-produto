@@ -1,16 +1,27 @@
-import { CategoriaProduto, ProdutosDoCardapio } from "@prisma/client";
-import { Decimal } from "@prisma/client/runtime/library";
-
-export interface Produto {
+import CategoriaProduto from './CategoriaProduto';
+import ProdutosDoCardapio from './ProdutosDoCardapio';
+interface Produto {
     id: number;
-    descricao: string;
-    preco: Decimal;
-    categoriaProdutoId: number;
     produtosDoCardapio: ProdutosDoCardapio[];
-    produtosDoPedido: ProdutosDoCardapio[];
+    categoriaProdutoId: number;
     categoriaProduto: CategoriaProduto;
-    quantidade: number;
-    valor: number;
+    descricao: string;
+    preco: number;
     createdAt: Date;
     updatedAt: Date;
 }
+
+class ProdutoImpl implements Produto {
+    constructor(
+        public id: number,
+        public descricao: string,
+        public preco: number,
+        public categoriaProdutoId: number,
+        public produtosDoCardapio: ProdutosDoCardapio[],
+        public categoriaProduto: CategoriaProduto,
+        public createdAt: Date,
+        public updatedAt: Date,
+    ) {}
+}
+
+export { Produto, ProdutoImpl };

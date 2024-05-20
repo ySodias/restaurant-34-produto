@@ -1,6 +1,7 @@
-import { Produto } from "@/entities/produto";
-import { IProdutoRepository } from "@/interfaces/repositories/IProdutoRepository";
-import { PrismaClient } from "@prisma/client";
+import { NovoProduto } from '@/entities/NovoProduto';
+import { Produto } from '../../entities/produto';
+import { IProdutoRepository } from '@/interfaces/repositories/IProdutoRepository';
+import { PrismaClient } from '@prisma/client';
 
 class ProdutoRepository implements IProdutoRepository {
     private prismaClient: PrismaClient;
@@ -16,12 +17,16 @@ class ProdutoRepository implements IProdutoRepository {
                     categoriaProdutoId: categoriaProdutoId,
                 },
             });
-            return getResponse as Produto[];
+
+            const produtoUnknown: unknown = getResponse;
+            const produtosConvertidos = produtoUnknown as Produto[];
+
+            return produtosConvertidos;
         } catch (error) {
             throw error;
         }
     }
-    async create(produto: Produto): Promise<Produto> {
+    async create(produto: NovoProduto): Promise<Produto> {
         try {
             const creationResponse = await this.prismaClient.produto.create({
                 data: {
@@ -31,12 +36,10 @@ class ProdutoRepository implements IProdutoRepository {
                 },
             });
 
-            return {
-                id: creationResponse.id,
-                categoriaProdutoId: creationResponse.categoriaProdutoId,
-                descricao: creationResponse.descricao,
-                preco: creationResponse.preco,
-            } as Produto;
+            const produtoUnknown: unknown = creationResponse;
+            const produtoConvertido = produtoUnknown as Produto;
+
+            return produtoConvertido;
         } catch (error) {
             throw error;
         }
@@ -71,18 +74,34 @@ class ProdutoRepository implements IProdutoRepository {
                     produtoId: id,
                 },
             });
-            await this.prismaClient.produtosDoPedido.deleteMany({
-                where: {
-                    produtoId: id,
-                },
-            });
+
             const deleteResponse = await this.prismaClient.produto.delete({
                 where: {
                     id: id,
                 },
             });
 
-            return deleteResponse as Produto;
+            const produtoUnknown: unknown = deleteResponse;
+            const produtoAtualizado = produtoUnknown as Produto;
+
+            return produtoAtualizado;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async getProdutoPorId(id: number): Promise<Produto> {
+        try {
+            const produtoBuscado = await this.prismaClient.produto.findUnique({
+                where: {
+                    id: id,
+                },
+            });
+
+            const produtoUnknown: unknown = produtoBuscado;
+            const produtoConvertido = produtoUnknown as Produto;
+
+            return produtoConvertido;
         } catch (error) {
             throw error;
         }

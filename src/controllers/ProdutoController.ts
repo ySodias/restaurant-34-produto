@@ -1,12 +1,12 @@
-import { Response, Request } from "express";
-import { ProdutoPresenter } from "@/presenters/produto";
-import { Produto } from "@prisma/client";
-import { ProdutoUseCase } from "@/usecases/produto/ProdutoUseCase";
-import ProdutoRepository from "@/external/repositories/ProdutoRepository";
-import { ProdutoGateway } from "@/gateways/produto";
-import { IProdutoController } from "@/interfaces/controllers/IProdutoController";
-import { IProdutoGateway } from "@/interfaces/gateway/IProdutoGateway";
-import { IProdutoUseCase } from "@/interfaces/usecases/IProdutoUseCase";
+import { ProdutoPresenter } from '../presenters/produto';
+import { Request, Response } from 'express';
+import { Produto } from '../entities/produto';
+import ProdutoRepository from '../external/repositories/ProdutoRepository';
+import { ProdutoGateway } from '../gateways/produto';
+import { IProdutoController } from '../interfaces/controllers/IProdutoController';
+import { IProdutoGateway } from '../interfaces/gateway/IProdutoGateway';
+import { IProdutoUseCase } from '../interfaces/usecases/IProdutoUseCase';
+import { ProdutoUseCase } from '../usecases/produto/ProdutoUseCase';
 
 export default class ProdutoController implements IProdutoController {
     private produtoUseCase: IProdutoUseCase;
@@ -21,12 +21,10 @@ export default class ProdutoController implements IProdutoController {
     async getProdutosCategoria(req: Request, res: Response) {
         const { categoriaProdutoId } = req.params;
         try {
-            const getProduto: Produto[] =
-                await this.produtoUseCase.executeGetProdutoCategoria(
-                    parseInt(categoriaProdutoId, 10)
-                );
-            const responseProduto =
-                this.produtoPresenter.getProdutosPresenter(getProduto);
+            const getProduto: Produto[] = await this.produtoUseCase.executeGetProdutoCategoria(
+                parseInt(categoriaProdutoId, 10),
+            );
+            const responseProduto = this.produtoPresenter.getProdutosPresenter(getProduto);
 
             return res.status(200).json(responseProduto);
         } catch (error: any) {
@@ -37,31 +35,26 @@ export default class ProdutoController implements IProdutoController {
     async createProduto(req: Request, res: Response) {
         const requestBody = req.body;
         if (!requestBody) {
-            const responseProduto =
-                this.produtoPresenter.presenterMensagemParaRespostaHttp(
-                    "Error criar produto, body vazio",
-                    false
-                );
+            const responseProduto = this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                'Error criar produto, body vazio',
+                false,
+            );
             return res.status(400).json(responseProduto);
         }
 
         try {
-            const produto = await this.produtoUseCase.executeCreation(
-                requestBody
-            );
+            const produto = await this.produtoUseCase.executeCreation(requestBody);
 
-            const responseProduto =
-                this.produtoPresenter.presenterMensagemParaRespostaHttp(
-                    "Sucesso criar produto",
-                    true
-                );
+            const responseProduto = this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                'Sucesso criar produto',
+                true,
+            );
             return res.status(200).json({ responseProduto, produto });
         } catch (error: any) {
-            const responseProduto =
-                this.produtoPresenter.presenterMensagemParaRespostaHttp(
-                    error?.message,
-                    false
-                );
+            const responseProduto = this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                error?.message,
+                false,
+            );
             return res.status(400).json(responseProduto);
         }
     }
@@ -70,21 +63,17 @@ export default class ProdutoController implements IProdutoController {
         try {
             const requestBody = req.body;
 
-            const produto = await this.produtoUseCase.executeUpdate(
-                requestBody
+            const produto = await this.produtoUseCase.executeUpdate(requestBody);
+            const responseProduto = this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                'Sucesso ao atualizar o produto',
+                true,
             );
-            const responseProduto =
-                this.produtoPresenter.presenterMensagemParaRespostaHttp(
-                    "Sucesso ao atualizar o produto",
-                    true
-                );
             return res.status(200).json({ responseProduto, produto });
         } catch (error) {
-            const mensagemAdaptada =
-                this.produtoPresenter.presenterMensagemParaRespostaHttp(
-                    "Ops, algo de errado aconteceu!",
-                    false
-                );
+            const mensagemAdaptada = this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                'Ops, algo de errado aconteceu!',
+                false,
+            );
             return res.status(400).json(mensagemAdaptada);
         }
     }
@@ -94,18 +83,33 @@ export default class ProdutoController implements IProdutoController {
         try {
             await this.produtoUseCase.executeDelete(parseInt(id, 10));
 
-            const responseProduto =
-                this.produtoPresenter.presenterMensagemParaRespostaHttp(
-                    "Sucesso ao deletar o produto",
-                    true
-                );
+            const responseProduto = this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                'Sucesso ao deletar o produto',
+                true,
+            );
             return res.status(200).json(responseProduto);
         } catch (error: any) {
-            const responseProduto =
-                this.produtoPresenter.presenterMensagemParaRespostaHttp(
-                    error?.message,
-                    false
-                );
+            const responseProduto = this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                error?.message,
+                false,
+            );
+            return res.status(400).json(responseProduto);
+        }
+    }
+
+    async getProdutoPorId(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            const produtoBuscado = await this.produtoUseCase.executeGetProdutoPorId(
+                parseInt(id, 10),
+            );
+
+            return res.status(200).json(produtoBuscado);
+        } catch (error: any) {
+            const responseProduto = this.produtoPresenter.presenterMensagemParaRespostaHttp(
+                error?.message,
+                false,
+            );
             return res.status(400).json(responseProduto);
         }
     }
