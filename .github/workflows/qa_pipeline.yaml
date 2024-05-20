@@ -29,7 +29,11 @@ jobs:
         run: npm run test
 
       - name: Execute Tests BDD
-        run: npm run test:features
+        run: |
+          docker run --name db_produto -e POSTGRES_PASSWORD=1234 -d postgres:latest
+          export DATABASE_URL=postgresql://postgres:1234@localhost:5432/db_produto
+          npm run prisma-setup
+          npm run test:features
 
       - uses: sonarsource/sonarqube-scan-action@master
         env:
