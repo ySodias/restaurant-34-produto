@@ -88,3 +88,12 @@ jest.spyOn(mockProdutoRepository, "getProdutoPorId")
         }
         ) as Produto;
 }).mockResolvedValue(produtoCriado);
+
+jest.spyOn(mockProdutoRepository, "get")
+    .mockImplementation(async (categoriaProdutoId: number): Promise<Produto[]> => {
+        return await prismaMock.produto.findMany({
+            where: {
+                categoriaProdutoId: categoriaProdutoId,
+            }
+        }) as Produto[];
+}).mockResolvedValue([produtoCriado]);

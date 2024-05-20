@@ -56,7 +56,14 @@ describe("ProdutoGateway - deve criar um produto", () => {
 
     it("get", async () => {
         const idProduto = 3
-        const produto = await produtoGateway.deleteProdutoGateway(idProduto);
+        const produto = await produtoGateway.getProdutosCategoriaGateway(idProduto);
+
+        expect(produto).toBeDefined();
+    });
+
+    it("get", async () => {
+        const idProduto = 3
+        const produto = await produtoGateway.getProdutoPorId(idProduto);
 
         expect(produto).toBeDefined();
     });
