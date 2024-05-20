@@ -8,7 +8,7 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: restaurant-34-produto
+      app: restaurante-34-produto
   template:
     metadata:
       labels:
