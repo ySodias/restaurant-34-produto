@@ -1,6 +1,6 @@
 import ProdutosDoCardapio from "./ProdutosDoCardapio";
 
-class Cardapio {
+interface Cardapio {
     id: number;
     produtosDoCardapio: ProdutosDoCardapio[];
     descricao: string;
@@ -8,21 +8,6 @@ class Cardapio {
     createdAt: Date;
     updatedAt: Date;
   
-    constructor(
-      id: number,
-      produtosDoCardapio: ProdutosDoCardapio[],
-      descricao: string,
-      ativo: boolean,
-      createdAt: Date,
-      updatedAt: Date
-    ) {
-      this.id = id;
-      this.produtosDoCardapio = produtosDoCardapio;
-      this.descricao = descricao;
-      this.ativo = ativo;
-      this.createdAt = createdAt;
-      this.updatedAt = updatedAt;
-    }
   }
-  
-  export default Cardapio;
+
+export default Cardapio;
