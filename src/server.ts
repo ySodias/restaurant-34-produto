@@ -9,8 +9,6 @@ import { routes } from "./api";
 import { prisma } from "./external/database";
 import request from 'supertest';
 
-process.env.DATABASE_URL="postgresql://root:root@localhost:5432/produtos?schema=public"
-
 const app = express();
 
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -23,8 +21,8 @@ new routes(app, prisma);
 
 const server = http.createServer(app);
 
-server.listen(process.env.PORT || 3001, () => {
-    console.log(`RUNNING ON PORT ${process.env.PORT || 3001}`);
+server.listen(process.env.PORT || 3000, () => {
+    console.log(`RUNNING ON PORT ${process.env.PORT || 3000}`);
 });
 
 export default request(app);

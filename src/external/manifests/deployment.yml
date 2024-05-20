@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restaurant-34-produto
+  labels:
+    app: restaurant-34-produto
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: restaurant-34-pagamento
+  template:
+    metadata:
+      labels:
+        app: restaurant-34-produto
+    spec:
+      containers:
+        - name: restaurant-34-produto
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: restaurant-34-produto
+                  key: DATABASE_URL
+          image: 035133178716.dkr.ecr.us-east-1.amazonaws.com/restaurante-34-produto:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+
