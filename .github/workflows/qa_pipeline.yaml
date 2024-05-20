@@ -28,17 +28,17 @@ jobs:
       - name: Execute Tests
         run: npm run test
 
-      - name: Find Docker Host IP
-        uses: addnab/docker-run-action@v1
-        with:
-          image: postgres:latest
-          run: apk update > /dev/null && apk add iproute2 > /dev/null && ip -4 route show default | cut -d' ' -f3
-
       - name: Execute Tests BDD
         run: |
           docker run --name db_produto -e POSTGRES_PASSWORD=1234 -d postgres:latest
           docker ps
           export DATABASE_URL=postgresql://postgres:1234@localhost:5432/postgres
+      
+      - name: Find Docker Host IP
+        uses: addnab/docker-run-action@v1
+        with:
+          image: postgres:latest
+          run: apk update > /dev/null && apk add iproute2 > /dev/null && ip -4 route show default | cut -d' ' -f3
 
       - uses: sonarsource/sonarqube-scan-action@master
         env:
