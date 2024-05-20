@@ -31,7 +31,7 @@ jobs:
       - name: Execute Tests BDD
         run: |
           docker run --name db_produto -e POSTGRES_PASSWORD=1234 -d postgres:latest
-          export DATABASE_URL=postgresql://postgres:1234@localhost:5432/db_produto
+          export DATABASE_URL=postgresql://postgres:1234@localhost:5432/postgres
           npm run prisma-setup
           npm run test:features
 
