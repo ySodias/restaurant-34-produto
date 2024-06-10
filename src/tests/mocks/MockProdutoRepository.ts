@@ -1,10 +1,10 @@
 import ProdutoRepository from "../../external/repositories/ProdutoRepository";
 import { IProdutoRepository } from "@/interfaces/repositories/IProdutoRepository";
 import { prismaMock } from "./MockPrisma";
-import { NovoProduto } from "../../entities/NovoProduto";
+import { NovoProduto } from "../../entities/produto/NovoProduto";
 import CategoriaProduto from "../../entities/CategoriaProduto";
 import ProdutosDoCardapio from "../../entities/ProdutosDoCardapio";
-import { Produto } from "../../entities/produto";
+import { Produto } from "../../entities/produto/produto";
 
 export const mockProdutoRepository: IProdutoRepository = new ProdutoRepository(prismaMock);
 

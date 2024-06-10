@@ -1,4 +1,4 @@
-import { Produto } from "../../entities/produto";
+import { Produto } from "../../entities/produto/produto";
 
 export interface IProdutoPresenter {
     getProdutosPresenter(produtos: Produto[]): Produto[];

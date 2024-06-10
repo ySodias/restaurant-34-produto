@@ -1,6 +1,6 @@
 
-import Cardapio from "./Cardapio";
-import { Produto } from "./produto";
+import Cardapio from "./cardapio/Cardapio";
+import { Produto } from "./produto/produto";
 
 
 interface ProdutosDoCardapio {

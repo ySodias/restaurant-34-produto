@@ -1,5 +1,5 @@
-import { NovoProduto } from '@/entities/NovoProduto';
-import { Produto } from '../../entities/produto';
+import { NovoProduto } from '@/entities/produto/NovoProduto';
+import { Produto } from '../../entities/produto/produto';
 import { IProdutoRepository } from '@/interfaces/repositories/IProdutoRepository';
 import { PrismaClient } from '@prisma/client';
 

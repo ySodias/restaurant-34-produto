@@ -1,5 +1,5 @@
-import CategoriaProduto from './CategoriaProduto';
-import ProdutosDoCardapio from './ProdutosDoCardapio';
+import CategoriaProduto from '../CategoriaProduto';
+import ProdutosDoCardapio from '../ProdutosDoCardapio';
 interface Produto {
     id: number;
     produtosDoCardapio: ProdutosDoCardapio[];
