@@ -1,6 +1,6 @@
-import { Produto } from '../entities/produto';
+import { Produto } from '../entities/produto/produto';
 import ProdutoRepository from '../external/repositories/ProdutoRepository';
-import { NovoProduto } from '@/entities/NovoProduto';
+import { NovoProduto } from '@/entities/produto/NovoProduto';
 import { IProdutoRepository } from '@/interfaces/repositories/IProdutoRepository';
 import { prismaMock } from './mocks/MockPrisma';
 import ProdutosDoCardapio from '../entities/ProdutosDoCardapio';

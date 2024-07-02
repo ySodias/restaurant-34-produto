@@ -1,6 +1,6 @@
 import { ProdutoPresenter } from '../presenters/produto';
 import { Request, Response } from 'express';
-import { Produto } from '../entities/produto';
+import { Produto } from '../entities/produto/produto';
 import ProdutoRepository from '../external/repositories/ProdutoRepository';
 import { ProdutoGateway } from '../gateways/produto';
 import { IProdutoController } from '../interfaces/controllers/IProdutoController';

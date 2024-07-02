@@ -3,8 +3,7 @@ import { IProdutoGateway } from "@/interfaces/gateway/IProdutoGateway";
 import { mockProdutoRepository } from "./mocks/MockProdutoRepository";
 import ProdutosDoCardapio from "../entities/ProdutosDoCardapio";
 import CategoriaProduto from "@/entities/CategoriaProduto";
-import { Produto } from "@/entities/produto";
-import Cardapio from "@/entities/Cardapio";
+
 
 
 describe("ProdutoGateway - deve criar um produto", () => {

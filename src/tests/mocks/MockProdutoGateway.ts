@@ -3,7 +3,7 @@ import { IProdutoGateway } from "@/interfaces/gateway/IProdutoGateway";
 import { mockProdutoRepository } from "./MockProdutoRepository";
 import CategoriaProduto from "@/entities/CategoriaProduto";
 import ProdutosDoCardapio from "@/entities/ProdutosDoCardapio";
-import { Produto } from "@/entities/produto";
+import { Produto } from "@/entities/produto/produto";
 
 export const mockProdutoGateway: IProdutoGateway = new ProdutoGateway(mockProdutoRepository);
 
