@@ -23,6 +23,12 @@ class CardapioRoutes implements IBuildRoutes {
                 this.cardapioController
             )
         );
+        this.express.get(
+            `${this.BASE_URL}/cardapio/listar-produtos/:cardapioId`,
+            this.cardapioController.getProdutosCardapio.bind(
+                this.cardapioController
+            )
+        );
         this.express.post(
             `${this.BASE_URL}/cardapio`,
             this.cardapioController.createCardapio.bind(this.cardapioController)
@@ -35,10 +41,6 @@ class CardapioRoutes implements IBuildRoutes {
         this.express.delete(
             `${this.BASE_URL}/cardapio/:id`,
             this.cardapioController.deleteCardapio.bind(this.cardapioController)
-        );
-        this.express.get(
-            `${this.BASE_URL}/cardapio/:id`,
-            this.cardapioController.getCardapioById.bind(this.cardapioController)
         );
     }
 };

@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
@@ -8,41 +8,40 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Cardapio{
-  id Int @id @default(autoincrement())
-  produtosDoCardapio ProdutosDoCardapio[]
-  descricao String 
-  ativo Boolean @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+model Cardapio {
+  id        Int                  @id @default(autoincrement())
+  descricao String
+  ativo     Boolean              @default(true)
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @default(now())
+  produtos  ProdutosDoCardapio[]
 }
 
-model Produto{
-  id Int @id @default(autoincrement())
-  produtosDoCardapio ProdutosDoCardapio[]
+model Produto {
+  id                 Int                  @id @default(autoincrement())
   categoriaProdutoId Int
-  categoriaProduto CategoriaProduto @relation(fields: [categoriaProdutoId], references: [id])
-  descricao  String
-  preco Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  descricao          String
+  preco              Int
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @default(now())
+  produtosDoCardapio ProdutosDoCardapio[]
+  CategoriaProduto   CategoriaProduto     @relation(fields: [categoriaProdutoId], references: [id])
 }
 
-model CategoriaProduto{
-  id Int @id @default(autoincrement())
-  produto Produto[]
-  enumerador String @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+model CategoriaProduto {
+  id         Int       @id @default(autoincrement())
+  produto    Produto[]
+  enumerador String    @unique
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @default(now())
 }
 
 model ProdutosDoCardapio {
-  @@id([ produtoId, cardapioId, id])
-  id Int @default(autoincrement())
-  produto Produto @relation(fields: [produtoId], references: [id])
-  produtoId Int 
-  cardapio Cardapio @relation(fields: [cardapioId], references: [id])
+  id         Int      @id @default(autoincrement())
   cardapioId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  produtoId  Int
+  cardapio   Cardapio @relation(fields: [cardapioId], references: [id], onDelete: Cascade)
+  produto    Produto  @relation(fields: [produtoId], references: [id], onDelete: Cascade)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
 }
