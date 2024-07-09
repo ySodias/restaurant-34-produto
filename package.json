@@ -15,7 +15,8 @@
         "build": "npx prisma generate && tsc",
         "prisma-setup": "npx prisma migrate dev --name init && npx prisma db seed",
         "test": "jest --coverage --silent",
-        "test:features": "tsc && cucumber-js src/tests"
+        "test:features": "tsc && cucumber-js src/tests",
+        "hint": "hint http://localhost:3000/api/cardapio"
     },
     "dependencies": {
         "@prisma/client": "^5.6.0",
@@ -27,9 +28,10 @@
         "date-fns": "^3.1.0",
         "dotenv": "^16.3.1",
         "express": "^4.18.2",
+        "helmet": "^7.1.0",
         "json-schema": "^0.4.0",
-        "swagger-ui-express": "^5.0.0",
         "supertest": "^6.3.4",
+        "swagger-ui-express": "^5.0.0",
         "tsconfig-paths": "^4.2.0"
     },
     "devDependencies": {
