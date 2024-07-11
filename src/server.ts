@@ -10,7 +10,7 @@ import { prisma } from "./external/database";
 import request from 'supertest';
 import helmet from "helmet";
 import crypto from 'crypto';
-
+var robots = require('express-robots-txt');
 const app = express();
 
 app.use(bodyParser.json({ limit: "50mb" }));
@@ -23,7 +23,12 @@ app.use((req, res, next) => {
     next();
   });
 
-  
+app.use(robots({
+    UserAgent: '*',
+    Disallow: '/'
+}
+))
+
 
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.locals.nonce = crypto.randomBytes(16).toString('hex');

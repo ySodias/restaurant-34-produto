@@ -132,10 +132,9 @@ async function main() {
     for (const produtoDoCardapio of produtosDoCardapio) {
         await prisma.produtosDoCardapio.upsert({
             where: {
-                produtoId_cardapioId_id: {
+                produtoId_cardapioId: {
                     produtoId: produtoDoCardapio.produtoId,
                     cardapioId: produtoDoCardapio.cardapioId,
-                    id: produtoDoCardapio.id,
                 },
             },
             update: {},
