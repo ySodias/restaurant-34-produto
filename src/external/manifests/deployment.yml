@@ -18,7 +18,10 @@ spec:
         - name: restaurante-34-produto
           env:
             - name: DATABASE_URL
-              value: "postgresql://yuri:fX2Vdw9De@restaurant-34.csa85b0immta.us-east-1.rds.amazonaws.com:5432/db_produto"
+              valueFrom:
+                configMapKeyRef:
+                  name: restaurante-34-produto
+                  key: DATABASE_URL
           image: 763604068889.dkr.ecr.us-east-1.amazonaws.com/restaurante-34-produto:latest
           imagePullPolicy: IfNotPresent
           ports:

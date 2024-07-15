@@ -31,8 +31,11 @@
         "express-robots-txt": "^1.0.0",
         "express-seo-robots": "^1.0.2",
         "express-sitemap": "^1.8.0",
+        "express-sitemap-xml": "^3.1.0",
         "helmet": "^7.1.0",
+        "helmet-csp": "^4.0.0",
         "json-schema": "^0.4.0",
+        "robots-parser": "^3.0.1",
         "supertest": "^6.3.4",
         "swagger-ui-express": "^5.0.0",
         "tsconfig-paths": "^4.2.0"
