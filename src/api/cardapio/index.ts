@@ -29,19 +29,6 @@ class CardapioRoutes implements IBuildRoutes {
                 this.cardapioController
             )
         );
-        this.express.post(
-            `${this.BASE_URL}/cardapio`,
-            this.cardapioController.createCardapio.bind(this.cardapioController)
-        );
-
-        this.express.put(
-            `${this.BASE_URL}/cardapio`,
-            this.cardapioController.updateCardapio.bind(this.cardapioController)
-        );
-        this.express.delete(
-            `${this.BASE_URL}/cardapio/:id`,
-            this.cardapioController.deleteCardapio.bind(this.cardapioController)
-        );
     }
 };
 
