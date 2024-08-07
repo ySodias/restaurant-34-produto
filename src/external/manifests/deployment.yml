@@ -22,7 +22,7 @@ spec:
                 configMapKeyRef:
                   name: restaurante-34-produto
                   key: DATABASE_URL
-          image: 763604068889.dkr.ecr.us-east-1.amazonaws.com/restaurante-34-produto:latest
+          image: 138684654037.dkr.ecr.us-east-1.amazonaws.com/restaurante-34-produto:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
