@@ -49,5 +49,6 @@ export default class CardapioController implements ICardapioController {
         } catch (error: any) {
             return res.status(400).json({ message: error?.message });
         }
+        
     }
 }
