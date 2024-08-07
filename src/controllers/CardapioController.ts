@@ -50,16 +50,4 @@ export default class CardapioController implements ICardapioController {
             return res.status(400).json({ message: error?.message });
         }
     }
-
-    async createCardapio(req: Request, res: Response) {
-
-    }
-
-    async updateCardapio(req: Request, res: Response) {
-
-    }
-
-    async deleteCardapio(req: Request, res: Response) {
-
-    }
 }
