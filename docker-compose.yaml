@@ -1,6 +1,23 @@
 version: "3"
 
 services:
+    postgres:
+        container_name: db-restaurante-34
+        hostname: db-restaurante-34
+        image: postgres:latest
+        ports:
+            - "5432:5432"
+        expose:
+            - 5432
+        environment:
+            POSTGRES_DB: postgres
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+        volumes:
+            - pg_data:/var/lib/postgresql/data
+        networks:
+            - default
+
     api:
         container_name: restaurante-34-api
         hostname: restaurante-34-api
@@ -8,17 +25,22 @@ services:
             context: .
             dockerfile: Dockerfile
         ports:
-            - "3001:3001"
+            - "3000:3000"
         expose:
-            - 3001
+            - 3000
         environment:
-            DATABASE_URL: postgresql://yuri:fX2Vdw9De@restaurant-34.c392otfqbduq.us-east-1.rds.amazonaws.com:5432/db_produto
+            DATABASE_URL: "postgresql://root:root@db-restaurante-34:5432/postgres?schema=public"
         volumes:
             - pg_data:/var/lib/postgresql/data
         networks:
             - default
         restart: always
+        depends_on:
+            - postgres
 
+networks:
+    default:
+        driver: bridge
 
 volumes:
     pg_data:

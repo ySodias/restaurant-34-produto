@@ -10,9 +10,9 @@ import { prisma } from "./external/database";
 import request from 'supertest';
 import helmet from "helmet";
 import crypto from 'crypto';
-
+var robots = require('express-robots-txt');
 const app = express();
-
+const expressSitemapXml = require('express-sitemap-xml')
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json());
@@ -23,7 +23,17 @@ app.use((req, res, next) => {
     next();
   });
 
-  
+app.use(robots({
+    UserAgent: '*',
+    Disallow: '/'
+}
+))
+
+app.get("/", (req, res) => { 
+    res.json("Restaurant34 Produto")
+  })
+
+app.use(expressSitemapXml(() =>{ return ['/']},'https://bitmidi.com'))
 
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.locals.nonce = crypto.randomBytes(16).toString('hex');
@@ -31,7 +41,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   });
   
 app.use(
-helmet.contentSecurityPolicy({
+    helmet.contentSecurityPolicy({
     directives: {
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", (req: any, res: any) => `'nonce-${res.locals.nonce}'`],
@@ -41,6 +51,7 @@ helmet.contentSecurityPolicy({
     connectSrc: ["'self'"],
     objectSrc: ["'none'"],
     upgradeInsecureRequests: [],
+    action: "deny",
     },
 })
 );

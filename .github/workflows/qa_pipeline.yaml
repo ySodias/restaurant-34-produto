@@ -26,14 +26,3 @@ jobs:
 
       - name: Execute Tests
         run: npm run test
-
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        with:
-          args: >
-            -Dsonar.javascript.typescript=true
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }}
-            -Dsonar.exclusions=**/api/**,**/node_modules/**,**/tests/**,**/dist/**,src/routes.ts,src/server.ts,docker-compose.yaml,Dockerfile,**/manifests/**,commitlint.config.js,**/controllers/**,**/prisma/**,jest.config.cjs
-            -Dsonar.javascript.typescript.lcov.reportPaths=coverage/lcov.info
