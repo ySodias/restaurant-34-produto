@@ -5,3 +5,4 @@ export interface IProdutoController {
     getProdutosCategoria(req: any, res: any): any;
     getProdutoPorId(req: any, res: any): any;
 }
+
